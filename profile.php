@@ -28,6 +28,11 @@ $orders = $pdo->prepare("SELECT * FROM orders WHERE user_id=? ORDER BY id DESC")
 $orders->execute([$u['id']]); 
 $orders = $orders->fetchAll();
 
+// دریافت محصولات علاقه‌مندی
+$wishlist_items = $pdo->prepare("SELECT p.* FROM wishlist w JOIN products p ON p.id = w.product_id WHERE w.user_id = ? ORDER BY w.id DESC");
+$wishlist_items->execute([$u['id']]);
+$wishlist = $wishlist_items->fetchAll();
+
 $page_title = 'حساب کاربری';
 include 'includes/header.php';
 ?>
@@ -38,9 +43,9 @@ include 'includes/header.php';
     <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; align-items:center;">
         <a href="profile.php?tab=dashboard" class="btn <?= $tab=='dashboard'?'btn-primary':'btn-outline' ?>" style="text-decoration:none;">داشبورد</a>
         <a href="profile.php?tab=orders" class="btn <?= $tab=='orders'?'btn-primary':'btn-outline' ?>" style="text-decoration:none;">سفارش‌ها</a>
+        <a href="profile.php?tab=wishlist" class="btn <?= $tab=='wishlist'?'btn-primary':'btn-outline' ?>" style="text-decoration:none;">❤️ علاقه‌مندی‌ها</a>
         <a href="profile.php?tab=verify" class="btn <?= $tab=='verify'?'btn-primary':'btn-outline' ?>" style="text-decoration:none;">احراز هویت</a>
         
-        <!-- دکمه خروج: توکن امنیتی به انتهای لینک اضافه شد تا api.php آن را قبول کند -->
         <a href="api.php?action=logout&csrf=<?= csrf() ?>" class="btn btn-outline" style="color:#ef4444; border-color:#ef4444; margin-inline-start:auto; text-decoration:none;">🚪 خروج از حساب</a>
     </div>
 
@@ -123,20 +128,6 @@ include 'includes/header.php';
                     <p style="font-weight:bold; margin-bottom:10px;">مبلغ نهایی: <?= fmt($o['total']) ?> تومان</p>
                     <p style="font-size:13px; margin-bottom:10px;">آدرس تحویل: <?= e($o['address']) ?></p>
 
-                    <div style="background:#f8fafc; padding:12px; border-radius:10px; margin-top:10px;">
-                        <b style="font-size:13px; color:var(--primary-d);">اقلام سفارش:</b>
-                        <?php
-                            $items = $pdo->prepare("SELECT * FROM order_items WHERE order_id=?");
-                            $items->execute([$o['id']]);
-                            foreach($items->fetchAll() as $it):
-                        ?>
-                            <div style="display:flex; justify-content:space-between; font-size:13px; margin-top:8px; border-bottom:1px dashed #eee; padding-bottom:5px;">
-                                <span><?= e($it['product_name']) ?> (تعداد: <?= $it['qty'] ?>)</span>
-                                <span><?= fmt($it['unit_price'] * $it['qty']) ?> تومان</span>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-
                     <?php if($o['status'] == 'shipped' && $o['tracking_code']): ?>
                         <div style="margin-top:15px; background:#e0e7ff; color:#3730a3; padding:12px; border-radius:10px; font-weight:bold; font-size:14px; text-align:center;">
                             📦 کد رهگیری مرسوله شما: <span style="font-family:monospace; font-size:18px;"><?= e($o['tracking_code']) ?></span>
@@ -144,6 +135,34 @@ include 'includes/header.php';
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
+        <?php endif; ?>
+
+    <?php elseif($tab == 'wishlist'): ?>
+        <?php if(!$wishlist): ?>
+            <div style="background:#fff; padding:20px; border-radius:16px; text-align:center; color:var(--muted);">
+                لیست علاقه‌مندی‌های شما خالی است. ♡
+            </div>
+        <?php else: ?>
+            <div class="products" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+                <?php foreach($wishlist as $p): ?>
+                    <article class="product-card reveal">
+                        <a href="product.php?id=<?= $p['id'] ?>" class="p-img">
+                            <?php if($p['image']): ?>
+                                <img src="<?= e($p['image']) ?>" alt="<?= e($p['name']) ?>">
+                            <?php else: ?>
+                                📦
+                            <?php endif; ?>
+                        </a>
+                        <div class="p-body">
+                            <a href="product.php?id=<?= $p['id'] ?>" class="p-name"><?= e($p['name']) ?></a>
+                            <div class="p-price"><?= fmt($p['price']) ?> تومان</div>
+                            <button class="btn-cart" data-pid="<?= $p['id'] ?>">افزودن به سبد</button>
+                            <!-- دکمه حذف از علاقه‌مندی -->
+                            <button class="wish-btn active" data-pid="<?= $p['id'] ?>" style="width:100%; margin-top:5px; border:none; background:none; color:#ef4444; cursor:pointer; font-size:12px;">❌ حذف از علاقه‌مندی</button>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            </div>
         <?php endif; ?>
 
     <?php elseif($tab == 'verify'): ?>

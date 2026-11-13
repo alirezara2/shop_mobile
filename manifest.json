@@ -1,0 +1,22 @@
+{
+    "name": "فروشگاه من",
+    "short_name": "فروشگاه",
+    "start_url": "/onsori/shop_mobile/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#7c3aed",
+    "lang": "fa",
+    "dir": "rtl",
+    "icons": [
+        {
+            "src": "https://via.placeholder.com/192x192/7c3aed/ffffff?text=Shop",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://via.placeholder.com/512x512/7c3aed/ffffff?text=Shop",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

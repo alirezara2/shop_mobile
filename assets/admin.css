@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
     --primary: #7c3aed;
@@ -14,7 +14,7 @@
     --muted: #64748b;
     --border: #e2e8f0;
     --grad: linear-gradient(135deg, #7c3aed, #ec4899);
-    --shadow: 0 10px 30px rgba(124, 58, 237, 0.1);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -30,6 +30,7 @@ body {
     direction: rtl;
     line-height: 1.7;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 a {
@@ -44,6 +45,7 @@ button {
     background: none;
 }
 
+/* ============ فرم‌ها ============ */
 input,
 select,
 textarea {
@@ -52,10 +54,10 @@ textarea {
     color: var(--text);
     width: 100%;
     padding: 11px 14px;
-    border-radius: 12px;
+    border-radius: 10px;
     border: 1.5px solid var(--border);
     background: var(--card);
-    transition: .2s;
+    transition: 0.2s;
     margin-top: 6px;
     outline: none;
 }
@@ -64,12 +66,12 @@ input:focus,
 textarea:focus,
 select:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
 }
 
 textarea {
     resize: vertical;
-    min-height: 70px;
+    min-height: 80px;
 }
 
 label {
@@ -80,28 +82,28 @@ label {
     margin-top: 14px;
 }
 
-/* ============ Buttons ============ */
+/* ============ دکمه‌ها ============ */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 11px 20px;
-    border-radius: 12px;
-    font-weight: 800;
-    font-size: 13.5px;
-    transition: .25s;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    transition: 0.2s;
 }
 
 .btn-primary {
     background: var(--grad);
     color: #fff;
-    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.3);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(124, 58, 237, 0.4);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
 }
 
 .btn-outline {
@@ -120,14 +122,12 @@ label {
 }
 
 .btn-sm {
-    padding: 8px 14px;
-    font-size: 12.5px;
-    border-radius: 9px;
-    width: auto;
-    margin-top: 0;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 8px;
 }
 
-/* ============ Login ============ */
+/* ============ صفحه ورود ============ */
 .login-wrap {
     min-height: 100vh;
     display: flex;
@@ -139,20 +139,17 @@ label {
 
 .login-box {
     background: #fff;
-    border-radius: 24px;
-    padding: 44px 36px;
+    border-radius: 20px;
+    padding: 40px 30px;
     width: 100%;
-    max-width: 420px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
 .login-box h1 {
-    font-size: 24px;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    font-size: 22px;
+    color: var(--primary-d);
     font-weight: 900;
     margin-bottom: 8px;
 }
@@ -166,14 +163,14 @@ label {
 .login-box .btn-primary {
     width: 100%;
     margin-top: 20px;
-    padding: 14px;
+    padding: 12px;
 }
 
-/* ============ Alerts ============ */
+/* ============ هشدارها ============ */
 .alert {
     padding: 12px 18px;
-    border-radius: 12px;
-    margin-bottom: 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
     font-weight: 700;
     font-size: 13.5px;
 }
@@ -181,24 +178,22 @@ label {
 .alert.ok {
     background: #d1fae5;
     color: #065f46;
-    border: 1.5px solid #6ee7b7;
 }
 
 .alert.err {
     background: #fee2e2;
     color: #991b1b;
-    border: 1.5px solid #fca5a5;
 }
 
-/* ============ Layout ============ */
+/* ============ چیدمان اصلی ============ */
 .admin-layout {
-    display: grid;
-    grid-template-columns: 260px 1fr;
+    display: flex;
     min-height: 100vh;
 }
 
-/* ============ Sidebar ============ */
+/* ============ سایدبار ============ */
 .sidebar {
+    width: 260px;
     background: linear-gradient(180deg, #1e1b4b, #0f172a);
     color: #cbd5e1;
     padding: 24px 16px;
@@ -206,6 +201,7 @@ label {
     top: 0;
     height: 100vh;
     overflow-y: auto;
+    flex-shrink: 0;
 }
 
 .sidebar h2 {
@@ -213,14 +209,11 @@ label {
     font-weight: 900;
     margin-bottom: 6px;
     padding: 0 8px;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #a78bfa;
 }
 
 .sidebar .sub {
-    font-size: 11.5px;
+    font-size: 12px;
     color: #64748b;
     margin-bottom: 22px;
     padding: 0 8px;
@@ -231,13 +224,12 @@ label {
     align-items: center;
     gap: 10px;
     padding: 12px 14px;
-    border-radius: 11px;
+    border-radius: 10px;
     margin-bottom: 4px;
-    transition: .2s;
+    transition: 0.2s;
     font-weight: 600;
     font-size: 13.5px;
     color: #cbd5e1;
-    cursor: pointer;
 }
 
 .nav-item:hover {
@@ -248,11 +240,11 @@ label {
 .nav-item.active {
     background: var(--grad);
     color: #fff;
-    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
 }
 
 .sidebar-foot {
-    margin-top: 28px;
+    margin-top: 30px;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -261,20 +253,21 @@ label {
     display: block;
     padding: 10px 14px;
     font-size: 13px;
-    border-radius: 9px;
+    border-radius: 8px;
     color: #94a3b8;
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .sidebar-foot a:hover {
-    background: rgba(239, 68, 68, 0.2);
+    background: rgba(239, 68, 68, 0.15);
     color: #fca5a5;
 }
 
-/* ============ Main ============ */
+/* ============ محتوای اصلی ============ */
 .main {
-    padding: 28px;
-    max-width: 1400px;
+    flex: 1;
+    padding: 30px;
+    max-width: 100%;
     overflow-x: hidden;
 }
 
@@ -282,59 +275,53 @@ label {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 25px;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
 }
 
 .top-bar h1 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 900;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--primary-d);
 }
 
-/* ============ Stats ============ */
+/* ============ آمار ============ */
 .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
 .stat {
     background: #fff;
-    border-radius: 18px;
+    border-radius: 14px;
     padding: 20px;
     box-shadow: var(--shadow);
-    border: 1.5px solid var(--border);
+    border: 1px solid var(--border);
 }
 
 .stat .label {
     font-size: 12px;
     color: var(--muted);
-    font-weight: 600;
+    font-weight: 700;
+    margin-bottom: 6px;
 }
 
 .stat .val {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 900;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-top: 6px;
+    color: var(--primary-d);
 }
 
-/* ============ Cards ============ */
+/* ============ کارت‌ها ============ */
 .card {
     background: #fff;
-    border-radius: 18px;
-    padding: 24px;
+    border-radius: 14px;
+    padding: 20px;
     box-shadow: var(--shadow);
-    border: 1.5px solid var(--border);
+    border: 1px solid var(--border);
     margin-bottom: 20px;
 }
 
@@ -345,17 +332,29 @@ label {
     font-weight: 800;
 }
 
+/* ============ گریدها ============ */
 .row3 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
 }
 
-/* ============ Tables ============ */
+@media (max-width: 600px) {
+    .row3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============ جدول‌ها ============ */
+.table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 13.5px;
+    font-size: 13px;
 }
 
 th,
@@ -363,7 +362,7 @@ td {
     padding: 12px 10px;
     text-align: right;
     border-bottom: 1px solid var(--border);
-    white-space: nowrap;
+    vertical-align: middle;
 }
 
 th {
@@ -371,16 +370,17 @@ th {
     font-weight: 800;
     color: #475569;
     font-size: 12.5px;
+    white-space: nowrap;
 }
 
 tr:hover td {
     background: #faf5ff;
 }
 
-/* ============ Badges ============ */
+/* ============ برچسب‌ها ============ */
 .badge {
     display: inline-block;
-    padding: 3px 10px;
+    padding: 4px 10px;
     border-radius: 20px;
     font-size: 11px;
     font-weight: 800;
@@ -411,13 +411,24 @@ tr:hover td {
     color: #991b1b;
 }
 
-/* ============ Mobile Only ============ */
+/* ============ فرم‌های داخل جدول (دکمه‌ها) ============ */
+td form {
+    display: inline-block;
+    margin: 0;
+}
+
+td .btn-sm {
+    padding: 5px 8px;
+    font-size: 11px;
+}
+
+/* ============ دکمه منو در موبایل ============ */
 .mobile-menu-btn {
     display: none;
     background: var(--primary-l);
     color: var(--primary);
     padding: 8px 12px;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 20px;
     cursor: pointer;
     border: none;
@@ -425,67 +436,222 @@ tr:hover td {
 
 .admin-overlay {
     display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
 }
 
-/* ============ Media Query (Mobile View) ============ */
+/* ============ ریسپانسیو موبایل ============ */
 @media (max-width: 900px) {
     .admin-layout {
         display: block;
     }
 
     .mobile-menu-btn {
-        display: flex;
+        display: block;
     }
 
+    /* هدر بالای صفحه */
     .top-bar {
-        position: sticky;
-        top: 0;
-        background: #fff;
-        z-index: 100;
-        padding: 10px 16px;
-        margin: -28px -28px 20px -28px;
-        /* کشیدن هدر به لبه‌ها */
-        border-bottom: 1px solid var(--border);
-        flex-wrap: nowrap;
-    }
-
-    .main {
-        padding: 0 16px 20px;
-        /* حذف پدینگ بالا چون هدر جایگزین شده */
-    }
-
-    .sidebar {
         position: fixed;
         top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: #fff;
+        padding: 0 15px;
+        z-index: 1000;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0;
+    }
+
+    .top-bar h1 {
+        font-size: 18px;
+    }
+
+    /* سایدبار به منوی کشویی تبدیل می‌شود */
+    .sidebar {
+        position: fixed;
+        top: 60px;
         right: -100%;
         width: 260px;
-        height: 100vh;
-        z-index: 1001;
+        height: calc(100vh - 60px);
+        z-index: 999;
         transition: right 0.3s ease;
-        box-shadow: none;
-        /* حذف سایه */
+        display: flex;
+        flex-direction: column;
     }
 
     .sidebar.open {
         right: 0;
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
-        /* سایه فقط وقتی باز است */
-    }
-
-    .admin-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 1000;
     }
 
     .admin-overlay.open {
         display: block;
     }
 
-    /* اسکرول افقی برای جدول‌ها در موبایل */
-    .card {
+    /* محتوای اصلی */
+    .main {
+        padding: 80px 15px 20px;
+    }
+
+    /* فیلدها و دکمه‌ها در موبایل */
+    .btn {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .btn-sm {
+        width: auto;
+        margin-top: 0;
+    }
+
+    /* فیکس جدول در موبایل */
+    .table-wrapper {
+        display: block;
+        width: 100%;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 700px;
+        /* جدول به اندازه کافی عریض می‌شود تا اسکرول بخورد */
+    }
+
+    td .btn-sm {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+}
+
+/* =========================================
+   استایل گرید محصولات در پنل ادمین
+   ========================================= */
+.products-admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.admin-product-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: 0.3s;
+}
+
+.admin-product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.apc-img {
+    width: 100%;
+    height: 150px;
+    background: #f5f3ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.apc-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.apc-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.apc-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.5;
+    height: 42px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.apc-price {
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--primary-d);
+}
+
+.apc-status {
+    font-size: 12px;
+}
+
+.apc-actions {
+    display: flex;
+    gap: 5px;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.apc-actions .btn {
+    flex: 1;
+    text-align: center;
+    font-size: 11px;
+    padding: 6px;
+    justify-content: center;
+}
+
+.apc-actions form {
+    flex: 1;
+    display: flex;
+}
+
+.apc-actions form .btn {
+    width: 100%;
+}
+
+/* ریسپانسیو موبایل برای کارت محصولات ادمین */
+@media (max-width: 900px) {
+    .products-admin-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .apc-img {
+        height: 120px;
+    }
+
+    .apc-name {
+        font-size: 12px;
+        height: 36px;
+    }
+
+    .apc-price {
+        font-size: 12px;
+    }
+
+    .apc-actions {
+        flex-direction: column;
+    }
+
+    .apc-actions .btn,
+    .apc-actions form .btn {
+        width: 100%;
+        padding: 8px;
+        font-size: 11px;
     }
 }
